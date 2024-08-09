@@ -1,10 +1,11 @@
 
+import 'package:adding_button/models/comment_details_model.dart';
 import 'package:flutter/material.dart';
 
-class UserDetailPage extends StatelessWidget {
-  final String name;
+class CommentDetailPage extends StatelessWidget {
+  final CommentDetailsModel commentDetailsModel;
 
-  UserDetailPage({required this.name});
+  CommentDetailPage({required this.commentDetailsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class UserDetailPage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Your file is present in $name',
+          'Title ${commentDetailsModel.title ?? "-"}',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,

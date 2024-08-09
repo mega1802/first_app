@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class AddUserPage extends StatelessWidget {
+class AddNewCommentPage extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
+
+  AddNewCommentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class AddUserPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Return the new item back to the NameListPage.
-                Navigator.pop(context, _controller.text);
+                Get.back(result: {"newUser": _controller.text});
               },
               child: Text('Add'),
             ),
