@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydevice/models/organization_model.dart';
-import 'package:mydevice/services/api_service.dart'; // Ensure this is correctly imported
+import 'package:mydevice/services/api_service.dart';
 import 'package:mydevice/views/verify/otp_verification_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../home/home_screen_page.dart';
 import 'complete_info_page.dart';
 
@@ -25,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordValid(String password) {
     return password.length > 8;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -100,9 +102,11 @@ class _LoginPageState extends State<LoginPage> {
                     try {
                       bool isRegistered = await dbHelper.getUserByEmailAndPassword(email, password).then((result) => result.isNotEmpty);
                       if (isRegistered) {
-                        // Create or fetch an organization instance
-                        OrganizationModel organization = OrganizationModel(name: '', adminFirstName: '',adminLastName: '',  category: '' , type: '', size: '', gstNo: '', contactNo: '', msmeNo: '', address: ''                         // Populate with actual data
-                                  );
+                        OrganizationModel organization = OrganizationModel(
+                            name: '', adminFirstName: '', adminLastName: '',
+                            category: '', type: '', size: '',
+                            gstNo: '', contactNo: '', msmeNo: '', address: ''
+                        ); // Populate with actual data
 
                         Navigator.pushReplacement(
                           context,
@@ -168,10 +172,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                 onPressed: () {
-                  // Handle terms and conditions
+                  //_launchURL();
                 },
                 child: Text(
-                  'Terms & condition and Privacy policy',
+                  'Terms & Conditions and Privacy Policy',
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
               ),

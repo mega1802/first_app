@@ -3,11 +3,9 @@ import 'package:mydevice/models/organization_model.dart';
 import 'package:mydevice/views/auth/log_in_page.dart';
 import 'package:mydevice/views/home/home_content_page.dart';
 import 'package:mydevice/views/profile/user_profile_page.dart';
-import 'package:mydevice/views/assets/assets_card.dart';
 import 'package:mydevice/views/godesk_menu/help_support_page.dart';
-
 import 'package:mydevice/views/ticket_view/ticket_view%20page.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreenPage extends StatefulWidget {
   final OrganizationModel organization;
@@ -61,6 +59,8 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +88,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
             ListTile(
               leading: Icon(Icons.privacy_tip),
               title: Text('Privacy Policy'),
+              //onTap:  _launchURLApp(), // Open the privacy policy link
             ),
             ListTile(
                 leading: Icon(Icons.help),

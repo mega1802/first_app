@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydevice/models/organization_model.dart';
 import 'package:mydevice/views/assets/assets_card.dart';
@@ -73,7 +74,7 @@ class HomeContent extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AssetsListPage(), // Ensure this is updated to navigate to AssetsListPage
+                          builder: (context) => AssetsListPage(),
                         ),
                       );
                     },

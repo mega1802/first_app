@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydevice/models/organization_model.dart'; // Import the model for organization
 import 'package:mydevice/views/auth/auth_service_page.dart'; // Adjust import if necessary
 import 'package:mydevice/views/auth/log_in_page.dart';
 
@@ -151,28 +152,28 @@ class _CompleteInfoPageState extends State<CompleteInfoPage> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
-                        bool userExists = await authService.isUserRegistered(_emailController.text);
-                        if (userExists) {
-                          // Show a message to the user that the email is already registered
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Email is already registered')),
-                          );
-                        } else {
-                          // Register the user
-                          await authService.register(
-                            _firstNameController.text,
-                            _lastNameController.text,
-                            _emailController.text,
-                            _passwordController.text,
-                            _organizationNameController.text,
-                          );
+                        // Register the user
+                        await authService.registerUser(
+                         _firstNameController.text,
+                          _lastNameController.text,
+                          _emailController.text,
+                          _passwordController.text,
+                        );
 
-                          // Navigate to LoginPage after successful registration
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
-                          );
-                        }
+                        // Register the organization
+                        OrganizationModel organization = OrganizationModel(
+                          name: _organizationNameController.text,
+                          adminFirstName: _firstNameController.text,
+                          adminLastName: _lastNameController.text, type: '', category: '', size: '', gstNo: '', msmeNo: '', contactNo: '', address: '',
+                          // Add other necessary fields here
+                        );
+                        await authService.registerOrganization(organization);
+
+                        // Navigate to LoginPage after successful registration
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Registration error: $e')),

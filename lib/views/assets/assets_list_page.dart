@@ -58,6 +58,7 @@ class _AssetsListPageState extends State<AssetsListPage> {
                       _addAsset(newAsset);
                     }
                   },
+
                   child: Text('Add Asset'),
                 ),
               ],

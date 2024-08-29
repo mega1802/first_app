@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydevice/models/assets_model.dart';
-
+import 'assets_manager_page.dart';
 
 class AddAssetPage extends StatefulWidget {
   @override
@@ -83,6 +83,7 @@ class _AddAssetPageState extends State<AddAssetPage> {
                         serialNo: _serialNo,
                       ),
                     );
+                    assetManager.assets.add(Asset as Asset);
                   }
                 },
                 child: Text('Add'),

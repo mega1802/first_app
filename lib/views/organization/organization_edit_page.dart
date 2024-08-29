@@ -39,7 +39,7 @@ class _EditOrganizationPageState extends State<EditOrganizationPage> {
   }
 
   @override
-  /*void dispose() {
+  void dispose() {
     nameController.dispose();
     adminFirstNameController.dispose();
     adminLastNameController.dispose();
@@ -52,7 +52,7 @@ class _EditOrganizationPageState extends State<EditOrganizationPage> {
     addressController.dispose();
     super.dispose();
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

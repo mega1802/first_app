@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydevice/models/organization_model.dart';
+import 'package:mydevice/views/home/home_screen_page.dart';
 import 'package:mydevice/views/organization/organization_detail_page.dart';
-import 'package:mydevice/views/home/home_screen_page.dart'; // Import the HomeScreenPage
-import 'edit_user_profile_page.dart';
-import 'change_password_page.dart';
+import 'package:mydevice/views/profile/change_password_page.dart';
+import 'package:mydevice/views/profile/edit_user_profile_page.dart';
 
 class UserProfilePage extends StatefulWidget {
   final OrganizationModel organization;
@@ -38,7 +39,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => HomeScreenPage(organization: _organization,)),
+              MaterialPageRoute(builder: (context) => HomeScreenPage(organization: _organization)),
             );
           },
         ),
@@ -78,7 +79,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                               _email = email;
                               _phoneNumber = phoneNumber;
                               _alternateNumber = alternateNumber;
-
+                              // Optionally, update _organization if needed
                             });
                           },
                         ),

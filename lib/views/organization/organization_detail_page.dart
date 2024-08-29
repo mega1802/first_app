@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mydevice/constants/app_image.dart';
 import 'package:mydevice/models/organization_model.dart';
-import 'package:mydevice/services/api_service.dart';
 import 'package:mydevice/views/organization/organization_edit_page.dart';
-
+import 'package:mydevice/views/organization/organization_manager_page.dart';
 
 class OrganizationDetailPage extends StatefulWidget {
   final OrganizationModel organization;
 
-  const OrganizationDetailPage({super.key, required this.organization});
+  const OrganizationDetailPage({Key? key, required this.organization}) : super(key: key);
 
   @override
-   _OrganizationDetailPageState createState() => _OrganizationDetailPageState();
+  _OrganizationDetailPageState createState() => _OrganizationDetailPageState();
 }
 
 class _OrganizationDetailPageState extends State<OrganizationDetailPage> {
   late OrganizationModel organization;
-  final DBHelper _dbHelper = DBHelper(); // Single instance of DBHelper
 
   @override
   void initState() {
@@ -26,8 +24,15 @@ class _OrganizationDetailPageState extends State<OrganizationDetailPage> {
 
   Future<void> _updateOrganization(OrganizationModel updatedOrganization) async {
     try {
-      await _dbHelper.updateOrganization(updatedOrganization);
+      // Update in OrganizationManager (assuming this is managing the state across the app)
+      final index = organizationManager.organizations.indexWhere((org) => org.id == updatedOrganization.id);
+      if (index != -1) {
+        setState(() {
+          organizationManager.organizations[index] = updatedOrganization;
+        });
+      }
     } catch (e) {
+      // Handle errors if necessary
     }
   }
 
@@ -71,7 +76,7 @@ class _OrganizationDetailPageState extends State<OrganizationDetailPage> {
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 20),
-            Text('Organization Details:', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text('Organization Details:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             Text('Organization Name: ${organization.name}', style: const TextStyle(fontSize: 18)),
             const Divider(),
@@ -96,7 +101,7 @@ class _OrganizationDetailPageState extends State<OrganizationDetailPage> {
             const SizedBox(height: 10),
             Text('MSME No: ${organization.msmeNo}', style: const TextStyle(fontSize: 18)),
             const SizedBox(height: 20),
-            Text('Contact Details:', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text('Contact Details:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             Text('Contact No: ${organization.contactNo}', style: const TextStyle(fontSize: 18)),
             const Divider(),

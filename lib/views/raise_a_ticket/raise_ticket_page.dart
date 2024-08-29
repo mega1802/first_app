@@ -108,7 +108,7 @@ class _RaiseTicketPageState extends State<RaiseTicketPage> {
                         issueType: _issueType ?? '',
                         description: _description,
                         status: 'Pending',
-                        date: DateTime.now().toString(), id: _id ?? '',
+                        date: DateTime.now().toString(),
                       ),
                     );
 
@@ -130,3 +130,4 @@ class _RaiseTicketPageState extends State<RaiseTicketPage> {
     );
   }
 }
+

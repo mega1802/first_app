@@ -1,5 +1,5 @@
 class Ticket {
-  final int? ticketId; // Nullable if auto-incremented by the database
+  final int? id;
   final String assetType;
   final String assetSubType;
   final String issueType;
@@ -8,19 +8,19 @@ class Ticket {
   final String date;
 
   Ticket({
-    this.ticketId,
+    this.id,
     required this.assetType,
     required this.assetSubType,
     required this.issueType,
     required this.description,
     required this.status,
-    required this.date, required id,
+    required this.date,
   });
 
-  // Convert a Ticket object into a Map<String, dynamic>
+  // Convert a Ticket object into a Map object
   Map<String, dynamic> toMap() {
     return {
-      'ticketId': ticketId,
+      'id': id,
       'assetType': assetType,
       'assetSubType': assetSubType,
       'issueType': issueType,
@@ -30,17 +30,16 @@ class Ticket {
     };
   }
 
-  // Create a Ticket object from a Map<String, dynamic>
+  // Extract a Ticket object from a Map object
   factory Ticket.fromMap(Map<String, dynamic> map) {
     return Ticket(
-      ticketId: map['ticketId'],
+      id: map['id'],
       assetType: map['assetType'],
       assetSubType: map['assetSubType'],
       issueType: map['issueType'],
       description: map['description'],
       status: map['status'],
       date: map['date'],
-      id: map['id'],
     );
   }
 }
